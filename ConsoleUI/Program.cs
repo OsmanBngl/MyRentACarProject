@@ -118,15 +118,15 @@ namespace ConsoleUI
             //}
 
 
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            rentalManager.Add(new Rental { RentalId = 1, CarId = 2, CustomerId = 3, RentDate =DateTime.Now, ReturnDate = DateTime.Now });
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //rentalManager.Add(new Rental { RentalId = 1, CarId = 2, CustomerId = 3, RentDate =DateTime.Now, ReturnDate = DateTime.Now });
 
-            //rentalManager.Add(new Rental { RentalId = 1, CarId = 2, CustomerId = 3, RentDate = 2021 / 02 / 20, ReturnDate = 2021\02\22 });
+            ////rentalManager.Add(new Rental { RentalId = 1, CarId = 2, CustomerId = 3, RentDate = 2021 / 02 / 20, ReturnDate = 2021\02\22 });
 
-            foreach (var item in rentalManager.GetAll().Data)
-            {
-                Console.WriteLine(item.CarId+ " " +item.CustomerId+""+item.RentalId+""+item.RentDate+""+item.ReturnDate);
-            }
+            //foreach (var item in rentalManager.GetAll().Data)
+            //{
+            //    Console.WriteLine(item.CarId+ " " +item.CustomerId+""+item.RentalId+""+item.RentDate+""+item.ReturnDate);
+            //}
 
         }
     }
