@@ -16,23 +16,23 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (CarRentContext context = new CarRentContext())
             {
-                var result = from r in filter == null ? context.Rentals : context.Rentals.Where(filter)
-                             join c in context.Cars
-                             on r.CarId equals c.Id
-                             join cu in context.Customers
-                             on r.CustomerId equals cu.CustomerId
-                             join b in context.Brands
-                             on c.BrandId equals b.BrandId
-                             join u in context.Users
-                             on r.CarId equals u.UserId
+                var result = from rentals in filter == null ? context.Rentals : context.Rentals.Where(filter)
+                             join car in context.Cars
+                             on rentals.CarId equals car.Id
+                             join customer in context.Customers
+                             on rentals.CustomerId equals customer.Id
+                             join brand in context.Brands
+                             on car.BrandId equals brand.Id
+                             join user in context.Users
+                             on rentals.CarId equals user.Id
                              select new RentalDetailDto
                              {
-                                 RentalId = r.RentalId,
-                                 CarName = b.BrandName,
-                                 CustomerName = cu.CompanyName,
-                                 UserName = u.FirstName + " " + u.LastName,
-                                 RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate
+                                 Id = rentals.Id,
+                                 CarName = brand.BrandName,
+                                 CustomerName = customer.CompanyName,
+                                 UserName = user.FirstName + " " + user.LastName,
+                                 RentDate = rentals.RentDate,
+                                 ReturnDate = rentals.ReturnDate
                              };
                 return result.ToList();
             }
