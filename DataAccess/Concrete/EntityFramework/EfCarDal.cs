@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarRentContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(int id)
         {
             using (CarRentContext context=new CarRentContext())
             {
@@ -21,6 +21,12 @@ namespace DataAccess.Concrete.EntityFramework
                              on brand.Id equals car.BrandId
                              join color in context.Colors
                              on car.ColorId equals color.Id
+                             join im in context.CarImages
+                             on car.Id equals im.CarId
+                            // where car.CarId == carId
+                            
+                             where car.Id==id
+                            
                              select new CarDetailDto
                              {
                                  Id = car.Id,
@@ -28,11 +34,44 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName=color.ColorName,
                                  DailyPrice= car.DailyPrice,
                                  ModelYear=car.ModelYear,
-                                 Description=car.Description
+                                 Description=car.Description,
+                                 ImagePath= im.ImagePath
+                                 
                              };
                 return result.ToList();
                 
 
+            }
+        }
+
+
+
+        public List<CarDetailDto> GetCarDetails2()
+        {
+
+            using (CarRentContext context = new CarRentContext())
+            {
+                var result = from car in context.Cars
+                             join b in context.Brands
+                                 on car.BrandId equals b.Id
+                             join color in context.Colors
+                                 on car.ColorId equals color.Id
+                             //join image in context.CarImages
+                             //on car.CarId equals image.CarId
+
+                             select new CarDetailDto
+                             {
+                                 Id = car.Id,
+                                 
+                                 BrandName = b.BrandName,
+                                 ColorName = color.ColorName,
+                                 DailyPrice = car.DailyPrice,
+                                 Description = car.Description,
+                                 ModelYear = car.ModelYear,
+                                 ImagePath = (from carImage in context.CarImages where carImage.CarId == car.Id select carImage.ImagePath).FirstOrDefault()
+
+                             };
+                return result.ToList();
             }
         }
     }

@@ -11,17 +11,21 @@ namespace Core.Helpers
     {
         public static string Add(IFormFile file)
         {
+            string path = Environment.CurrentDirectory + @"\wwwroot\images\";
             var sourcepath = Path.GetTempFileName();
             if (file.Length > 0)
             {
                 using (var stream = new FileStream(sourcepath, FileMode.Create))
                 {
                     file.CopyTo(stream);
+                    stream.Flush();
                 }
             }
-            var result = newPath(file);
+            var path1 = newPath(file);
+            var result = path+path1;
             File.Move(sourcepath, result);
-            return result;
+            return "/images/" +path1;
+
         }
         public static IResult Delete(string path)
         {
@@ -52,13 +56,13 @@ namespace Core.Helpers
         public static string newPath(IFormFile file)
         {
             FileInfo ff = new FileInfo(file.FileName);
-            string fileExtension = ff.Extension;
+            string fileExtension = ff.Extension; //extension uzantı demek dosyanın uzantısını aldım png, jpeg gibi düşünün
 
-            string path = Environment.CurrentDirectory + @"\Images";
+            //string path = Environment.CurrentDirectory + @"\wwwroot\images\";  // Environment.CurrentDirectory geçerli çalışma dizininin tam yolunu alır veya ayarlar
             var newPath = Guid.NewGuid().ToString() + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Year + fileExtension;
-
-            string result = $@"{path}\{newPath}";
-            return result;
+            //  Guid bilgisayar yazılımlarında tanımlayıcı olarak kullanılan benzersiz bir referans numarasıdır
+            //string result = $@"{path}\{newPath}";
+            return newPath;
         }
 
     }

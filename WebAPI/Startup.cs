@@ -98,6 +98,8 @@ namespace WebAPI
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles(); // wwwroot altýndaki fotoðraflarý kullanabilmemiz için gerekli!
+
             app.UseRouting();
 
             app.UseAuthentication();

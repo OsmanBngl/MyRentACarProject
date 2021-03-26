@@ -50,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update([FromForm(Name = ("Image"))] IFormFile file, [FromForm(Name = ("Id"))] int Id)
+        public IActionResult Update([FromForm(Name = ("Image"))] IFormFile file, [FromForm(Name = ("Id"))] int id)
         {
-            var carImage = _carImageService.Get(Id).Data;
+            var carImage = _carImageService.Get(id).Data;
             var result = _carImageService.Update(file, carImage);
             if (result.Success)
             {

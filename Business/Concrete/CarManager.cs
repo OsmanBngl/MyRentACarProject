@@ -56,9 +56,14 @@ namespace Business.Concrete
                 ( _carDal.Get(c => c.Id == id));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails(int id)
         {
-            return new SuccessDataResult< List < CarDetailDto >> (_carDal.GetCarDetails());
+            return new SuccessDataResult< List < CarDetailDto >> (_carDal.GetCarDetails(id ));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails2()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails2());
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
@@ -84,5 +89,7 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }

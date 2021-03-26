@@ -18,7 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Include="wwwroot\images\070488a1-8527-4be2-867a-b91529194caa_2_28_2021.jpg" />
+    <None Include="wwwroot\images\27412bb0-2887-45fa-88d8-1aaae72c0a30_2_28_2021.jpg" />
+    <None Include="wwwroot\images\582b8907-741f-436f-8bcb-a95942d0a800_2_28_2021.jpg" />
+    <None Include="wwwroot\images\a048114c-4c73-46ee-9bd2-52f302bea3fe_2_28_2021.png" />
+    <None Include="wwwroot\images\b48f5655-89cf-4a8c-b282-5e009743b857_2_28_2021.jpg" />
+    <None Include="wwwroot\images\dec582ab-f674-4ad1-b3d0-4d672c490cb0_2_28_2021.jpg" />
+    <None Include="wwwroot\images\logo.jpg" />
   </ItemGroup>
 
 
