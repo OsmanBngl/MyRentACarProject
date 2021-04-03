@@ -58,6 +58,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails(int id)
         {
+          
             return new SuccessDataResult< List < CarDetailDto >> (_carDal.GetCarDetails(id ));
         }
 
@@ -76,6 +77,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(cco => cco.ColorId == id));
         }
 
+        public IDataResult<List<CarDetailDto>> GetCarBrandAndColorDetails(int colorId, int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails2(c=>c.BrandId==c.ColorId));
+        }
+
         
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
@@ -90,6 +96,6 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-      
+     
     }
 }
